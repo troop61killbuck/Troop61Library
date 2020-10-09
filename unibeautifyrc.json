@@ -1,0 +1,16 @@
+{
+  "PHP": {
+    "beautifiers": [
+      "PHP-CS-Fixer",
+      "PHP_CodeSniffer"
+    ]
+  },
+  "HTML": {
+    "beautifiers": [
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_size": 4,
+    "max_preserve_newlines": 1
+  }
+}
