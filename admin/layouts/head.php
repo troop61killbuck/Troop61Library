@@ -1,3 +1,9 @@
+<?php
+require_once('includes/load.php');
+$user = current_user();
+$brand = brand();
+$redirect = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+?>
 <head>
 
     <meta charset="utf-8">
@@ -6,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Troop 61 Library Administration - <?php echo $page_name; ?></title>
+    <title><?php echo $brand['Name'];?> Administration - <?php echo $page_name; ?></title>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/b40aadc562.js" crossorigin="anonymous"></script>
@@ -24,7 +30,3 @@
 
 </head>
 
-<?php
-require_once('includes/load.php');
-$user = current_user();
-?>

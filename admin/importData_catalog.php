@@ -1,6 +1,6 @@
 <?php
 // Load the database configuration file
-include_once 'includes/dbConfig.php';
+require_once('includes/load.php');
 
 if(isset($_POST['importSubmit'])){
     
@@ -36,16 +36,16 @@ if(isset($_POST['importSubmit'])){
             
             // Close opened CSV file
             fclose($csvFile);
-            
-            $qstring = '?status=succ';
+                activityLog($user['name']." uploaded a CSV with catalog data.");
+$session->msg('s',"Catalog data has been imported successfully.");
+            redirect('catalog.php', false);
         }else{
-            $qstring = '?status=err';
+		$session->msg('d',"Some problem occurred, please try again.");
+            redirect('catalog.php', false);
         }
     }else{
-        $qstring = '?status=invalid_file';
+	$session->msg('d',"Please upload a valid CSV file.");
+      redirect('add_catalog_csv.php', false);
     }
 }
-
-// Redirect to the listing page
-header("Location: add_catalog_csv.php".$qstring);
 ?>

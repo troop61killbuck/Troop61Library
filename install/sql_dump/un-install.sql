@@ -1,1 +1,0 @@
-DROP TABLE `alerts`, `barcode_generator`, `book_catalog`, `book_category`, `book_circulations`, `book_media`, `book_types`, `library_information`, `members`, `member_groups`, `users`, `user_emails`, `user_email_preferences`, `user_groups`;

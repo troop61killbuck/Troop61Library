@@ -54,6 +54,8 @@ if(isset($_POST['reserve'])){
 	  	    $sql2 = "UPDATE book_catalog SET status = '1', CirculationsAssociatedID = '$randID' WHERE id = '{$catalogIDa}'";
         	    $result2 = $db->query($sql2);
         	    if($result && $result2){
+    activityLog($user['name']." reserved an item.");
+
             	    $session->msg('s',"Reserved");
             	    redirect($redirect, false);
         	    } else {

@@ -31,7 +31,7 @@
                     <!-- End: Search -->
                     <!-- Start: Copyright -->
                     <div class="col-lg-3 item social">
-                        <p class="copyright"><br>Copyright 	&#169 2020-2020<br>BSA Troop 4061 - Wooster Ohio<br>All Rights Reserved<br><br>Sponsored By:&nbsp;<br><a href="https://www.westminsterpresbyterianwooster.org/">Westminster Presbyterian Church</a><br><br></p>
+                        <p class="copyright"><br>Copyright 	&#169 2020-2020<br>BSA Troop 4061 - Wooster Ohio<br>All Rights Reserved</p>
                     </div>
                     <!-- End: Copyright -->
                 </div>

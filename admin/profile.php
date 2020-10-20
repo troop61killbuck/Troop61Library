@@ -14,6 +14,8 @@ $user_information = find_by_id('library_information',1);
   $user_id = (int)$_POST['user_id'];
   $photo->upload($_FILES['file_upload']);
   if($photo->process_user($user_id)){
+    activityLog($user['name']." changed their profile photo.");
+
     $session->msg('s','Photo has been uploaded.');
     redirect('profile.php');
     } else{
@@ -35,6 +37,8 @@ $user_information = find_by_id('library_information',1);
             $sql = "UPDATE users SET name ='{$name}', username ='{$username}' WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." uodated their profile.");
+
             $session->msg('s',"Acount updated ");
             redirect('profile.php', false);
           } else {
@@ -66,6 +70,8 @@ $user_information = find_by_id('library_information',1);
             $sql = "UPDATE users SET password ='{$new}' WHERE id='{$db->escape($id)}'";
             $result = $db->query($sql);
                 if($result && $db->affected_rows() === 1):
+    activityLog($user['name']." changed their password.");
+
                   $session->logout();
                   $session->msg('s',"Login with your new password.");
                   redirect('index.php', false);

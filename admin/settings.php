@@ -21,6 +21,8 @@ $user_email_preferences = find_email_preferences($user['id']);
             $sql = "UPDATE users SET sidebar = '{$toggle}' WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." changed their default sidebar position.");
+
             $session->msg('s',"Acount updated ");
             redirect('settings.php', false);
           } else {
@@ -42,7 +44,6 @@ $user_email_preferences = find_email_preferences($user['id']);
            $bookRequests = remove_junk($db->escape($_POST['bookRequests']));
            $userInfoChange = remove_junk($db->escape($_POST['userInfoChange']));
            $libraryInfoChange = remove_junk($db->escape($_POST['libraryInfoChange']));
-           $bookAddition = remove_junk($db->escape($_POST['bookAddition']));
 	     if ($contactUs === "1") {
 			$contactUs = "1";
 	     } else {
@@ -63,14 +64,11 @@ $user_email_preferences = find_email_preferences($user['id']);
 	     } else {
 			$libraryInfoChange = "0";
 	     }
-	     if ($bookAddition === "1") {
-			$bookAddition = "1";
-	     } else {
-			$bookAddition = "0";
-	     }
-            $sql = "UPDATE user_email_preferences SET contactUs = '{$contactUs}', bookRequests = '{$bookRequests}', userInfoChange = '{$userInfoChange}', libraryInfoChange = '{$libraryInfoChange}', bookAddition = '{$bookAddition}'  WHERE id='{$id}'";
+            $sql = "UPDATE user_email_preferences SET contactUs = '{$contactUs}', bookRequests = '{$bookRequests}', userInfoChange = '{$userInfoChange}', libraryInfoChange = '{$libraryInfoChange}'  WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated their email preferences.");
+
             $session->msg('s',"Preferences updated ");
             redirect('settings.php', false);
           } else {
@@ -101,6 +99,8 @@ $user_email_preferences = find_email_preferences($user['id']);
             $sql3 = "INSERT INTO user_email_preferences (id) VALUES ('{$id}')";
     		$result3 = $db->query($sql3);
 		require_once('sendgrid/verify_email.php');
+    activityLog($user['name']." added their email.");
+
             $session->msg('s',"Acount updated");
             redirect('settings.php', false);
           } else {
@@ -124,6 +124,8 @@ $user_email_preferences = find_email_preferences($user['id']);
            $id = (int)$_POST['id'];
            $email = $_POST['email'];
            $code = $_POST['verification_code'];
+		include_once('sendgrid/email_delete.php');
+
             $sql = "UPDATE users SET email = NULL, verification_code = NULL WHERE id='{$id}'";
     		$result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -260,11 +262,6 @@ $user_email_preferences = find_email_preferences($user['id']);
 							  <div class="form-group inline">
                                                 <input type="checkbox" id="libraryInfoChange" name="libraryInfoChange" data-onlabel="Yes" data-offlabel="No&nbsp" value="1" data-toggle="switchbutton" <?php if ($user_email_preferences['libraryInfoChange'] === '1') { echo "checked"; }?> data-size="md">							
                                                 <label for="libraryInfoChange" style="font-size: 1rem;">&nbsp &nbsp &nbsp &nbspChange of Library Information
-                                                </label>               					
-							  </div>
-							  <div class="form-group inline">
-                                                <input type="checkbox" id="bookAddition" name="bookAddition" data-onlabel="Yes" data-offlabel="No&nbsp" value="1" data-toggle="switchbutton" <?php if ($user_email_preferences['bookAddition'] === '1') { echo "checked"; }?> data-size="md">							
-                                                <label for="bookAddition" style="font-size: 1rem;">&nbsp &nbsp &nbsp &nbspAddition of Book to Catalog
                                                 </label>               					
 							  </div>
 							  <div class="form-group inline">

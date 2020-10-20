@@ -20,6 +20,8 @@ page_require_level(0);
 	  	$sql2 = "UPDATE book_catalog SET status = '0' WHERE id = '{$catalogID}'";
         	$result2 = $db->query($sql2);
         	if($result && $result2){
+    activityLog($user['name']." cancelled a reservation.");
+
             	$session->msg('s',"Reservation Cancelled");
             	redirect($redirect, false);
         	} else {
@@ -33,6 +35,8 @@ page_require_level(0);
 	  	$sql2 = "UPDATE book_catalog SET status = '0' WHERE id = '{$catalogID}'";
         	$result2 = $db->query($sql2);
         	if($result && $result2){
+    activityLog($user['name']." cancelled a reservation.");
+
             	$session->msg('s',"Reservation Cancelled");
             	redirect($redirect, false);
         	} else {

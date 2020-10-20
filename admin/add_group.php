@@ -36,6 +36,8 @@ if(isset($_POST['add'])){
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a group.");
+
             $session->msg('s',"Group has been created! ");
             redirect('group.php', false);
         } else {

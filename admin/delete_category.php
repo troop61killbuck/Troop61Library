@@ -6,6 +6,8 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('book_category',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a category.");
+
     $session->msg("s","Category has been deleted.");
     redirect('categories.php');
 } else {

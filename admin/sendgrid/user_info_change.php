@@ -1,6 +1,6 @@
 <?php
 
-include_once('credentials.php');
+require_once('includes/sendgrid_credentials.php');
 
 $curl = curl_init();
 
@@ -12,7 +12,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"personalizations\":[{\"to\":[{\"email\":\"$email\",\"name\":\"$name\"}],\"dynamic_template_data\":{\"name\":\"$name\",\"username\":\"$username\",\"role\":\"$level\",\"status\":\"$status\"},\"subject\":\"Hello, World!\"}],\"from\":{\"email\":\"$send_email\",\"name\":\"Troop 61 Library\"},\"reply_to\":{\"email\":\"$send_email\",\"name\":\"Troop 61 Library\"},\"template_id\":\"d-a42f0646c1564f8aabff1f6f23b45b43\"}",
+  CURLOPT_POSTFIELDS => "{\"personalizations\":[{\"to\":[{\"email\":\"$email\",\"name\":\"$name\"}],\"dynamic_template_data\":{\"name\":\"$name\",\"username\":\"$username\",\"role\":\"$levela\",\"status\":\"$statusa\"},\"subject\":\"Hello, World!\"}],\"from\":{\"email\":\"$send_email\",\"name\":\"Troop 61 Library\"},\"reply_to\":{\"email\":\"$send_email\",\"name\":\"Troop 61 Library\"},\"template_id\":\"d-a42f0646c1564f8aabff1f6f23b45b43\"}",
   CURLOPT_HTTPHEADER => array(
     "authorization: Bearer $apiKey",
     "content-type: application/json"

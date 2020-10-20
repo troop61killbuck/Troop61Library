@@ -33,6 +33,7 @@ if(!$e_user){
     		$result = $db->query($sql);
             $sql2 = "DELETE FROM user_email_preferences WHERE id='{$id}'";
     		$result2 = $db->query($sql2);
+    activityLog($user['name']." deleted a user\'s email.");
             $session->msg('s',"Email Deleted");
             redirect('edit_user.php?id='.$id, false);
           } else {
@@ -58,11 +59,25 @@ if(isset($_POST['update'])) {
         $username = remove_junk($db->escape($_POST['username']));
         $level = (int)$db->escape($_POST['level']);
         $status   = remove_junk($db->escape($_POST['status']));
-        $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}' WHERE id='{$db->escape($id)}'";
+        $tester = $db->escape($_POST['tester']);
+	     if ($tester === "1") {
+			$tester = "1";
+	     } else {
+			$tester = "0";
+	     }
+        $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}',tester='{$tester}' WHERE id='{$db->escape($id)}'";
         $result = $db->query($sql);
+	  $u_level = find_name_by_groupLevel($level);
+	  $levela = $u_level['0']['group_name'];
+	     if ($status === "1") {
+			$statusa = "Active";
+	     } elseif ($status === "0") {
+			$statusa = "Deactive";
+	     }
         $email = $e_user['email'];
-		include_once('sendgrid/user_info_change.php');
+		require_once('sendgrid/user_info_change.php');
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a user\'s account.");
             $session->msg('s',"Account Updated ");
             redirect('users.php', false);
         } else {
@@ -88,6 +103,7 @@ if(isset($_POST['update-pass'])) {
         $result = $db->query($sql);
 	include_once('sendgrid/password_change.php');
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a user\'s password.");
             $session->msg('s',"User password has been updated ");
             redirect('users.php', false);
         } else {
@@ -163,6 +179,14 @@ if(isset($_POST['update-pass'])) {
                                         <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Deactive</option>
                                     </select>
                                 </div>
+<?php if($user['user_level'] === "-2"):?>
+							  <div class="form-group inline">
+                                                <input type="checkbox" id="tester" name="tester" data-onlabel="Yes" data-offlabel="No&nbsp" value="1" data-toggle="switchbutton" data-size="md" <?php if ($e_user['tester'] === '1') { echo "checked"; }?>>							
+                                                <label for="tester" style="font-size: 1rem;">&nbsp &nbsp &nbsp &nbspTester?
+                                                </label>               					
+							  </div>
+<?php endif;?>
+
                                 <div class="form-group clearfix">
                                     <button type="submit" name="update" class="btn btn-info">Update</button>
                                 </div>

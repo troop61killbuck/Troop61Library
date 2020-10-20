@@ -70,15 +70,25 @@
                                     <?php foreach($all_users as $a_user): ?>
                                         <tr>
                                             <td class="text-center"><?php echo count_id();?></td>
-                                            <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
+                                            <td><?php echo remove_junk(ucwords($a_user['name']))?><?php if($a_user['tester'] === "1"){ echo '&nbsp&nbsp<i class="fas fa-bug"></i>';}?></td>
                                             <td><?php echo remove_junk($a_user['username'])?></td>
                                             <td><?php echo remove_junk($a_user['email'])?></td>
                                             <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td> 
            						  <td class="text-center">
            							<?php if($a_user['status'] === '1'): ?>
             							<span class="label label-success"><?php echo "Active"; ?></span>
+									<br>
+          <div class="btn-group">
+                <a href="deactivate_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Deactivate User">Deactivate 
+               </a>
+		</div>
           							<?php else: ?>
             							<span class="label label-danger"><?php echo "Deactive"; ?></span>
+									<br>
+           <div class="btn-group">
+                <a href="activate_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-success" data-toggle="tooltip" title="Activate User">Activate 
+               </a>
+		</div>
           							<?php endif;?>
            						  </td>
                                             <td><?php echo read_date($a_user['last_login'])?></td>

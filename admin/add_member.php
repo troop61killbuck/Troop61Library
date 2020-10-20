@@ -40,6 +40,8 @@ if(isset($_POST['add_member'])){
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a member.");
+
             $session->msg('s',"User account has been creted! ");
             redirect('members.php', false);
         } else {

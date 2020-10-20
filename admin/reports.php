@@ -45,8 +45,6 @@
                   <h6 class="m-0 font-weight-bold text-primary">Catalog Reports</h6>
                 </div>
                 <div class="card-body">
-		<div class="row">
-            <div class="col-sm">
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -57,15 +55,16 @@
                       <div class="text-xs font-weight-bold text-primary">Report on catalog items of your library.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
+
+<br>
+
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -76,18 +75,16 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the catalog items copies of<br>your library.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-		</div>
+
 <br>
-		<div class="row">
-            <div class="col-sm">
+
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -95,19 +92,20 @@
                     <div class="col mr-2">
                       <div class="h5 mb-0 font-weight-bold text-gray-800">Booked Copies</div>
 <br>
-                      <div class="text-xs font-weight-bold text-primary">Report on those copies that has been booked<br>or reserved by your library members.</div>
+                      <div class="text-xs font-weight-bold text-primary">Report on the copies that has been booked<br>or reserved by your library members.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-bookmark fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
-		<a href="#">
+
+<br>
+
+		<a href="report_allTitles.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -117,19 +115,17 @@
                       <div class="text-xs font-weight-bold text-primary">Export all the media titles of your library<br>catalog into a CSV file format.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-download fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-excel fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-		</div>
+
 <br>
-		<div class="row">
-            <div class="col-sm">
-		<a href="#">
+
+		<a href="report_allCopies.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -139,18 +135,13 @@
                       <div class="text-xs font-weight-bold text-primary">Export all the media copies of your library<br>catalog into a CSV file format.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-download fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-excel fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
-
-            </div>
-		</div>
                 </div>
               </div>
               <div class="card shadow mb-4">
@@ -158,8 +149,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Circulation Reports</h6>
                 </div>
                 <div class="card-body">
-		<div class="row">
-            <div class="col-sm">
+
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -170,15 +160,16 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the current circulations of<br>your library.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book-open fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
+
+<br>
+
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -189,19 +180,17 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the circulations, current and past,<br>of your library.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book-open fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-		</div>
+
 <br>
-		<div class="row">
-            <div class="col-sm">
-		<a href="#">
+
+		<a href="report_allCirculations.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -211,18 +200,13 @@
                       <div class="text-xs font-weight-bold text-primary">Export all the circulations, current and past,<br>of your library into a CSV file format.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-download fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-excel fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
-
-            </div>
-		</div>
                 </div>
               </div>
 </div>
@@ -233,8 +217,6 @@
                   <h6 class="m-0 font-weight-bold text-primary">Member Reports</h6>
                 </div>
                 <div class="card-body">
-		<div class="row">
-            <div class="col-sm">
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -245,15 +227,16 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the current members of<br>your library. These are members who<br>are marked as active and a member<br>of either the Scouts or Adults groups. </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-user fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
+
+<br>
+
 		<a href="#">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -264,19 +247,17 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the members, current and past, of<br>your library.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-user fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-pdf fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-		</div>
+
 <br>
-		<div class="row">
-            <div class="col-sm">
-		<a href="#">
+
+		<a href="report_currentMembers.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -286,16 +267,17 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the current members of<br>your library into a CSV file format.<br>These are members who are marked<br>as active and a member of either the<br>Scouts or Adults groups. </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-download fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-excel fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-            <div class="col-sm">
-		<a href="#">
+
+<br>
+
+		<a href="report_allMembers.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -305,15 +287,14 @@
                       <div class="text-xs font-weight-bold text-primary">Report on all the members, current and past,<br>of your library into a CSV file format.</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-download fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-excel fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
 		</a>
-            </div>
-		</div>
+
                 </div>
               </div>
             </div>

@@ -1765,10 +1765,9 @@ switch ($c3r10) {
 
 $array = array($c1r1,$c1r2,$c1r3,$c1r4,$c1r5,$c1r6,$c1r7,$c1r8,$c1r9,$c1r10,$c2r1,$c2r2,$c2r3,$c2r4,$c2r5,$c2r6,$c2r7,$c2r8,$c2r9,$c2r10,$c3r1,$c3r2,$c3r3,$c3r4,$c3r5,$c3r6,$c3r7,$c3r8,$c3r9,$c3r10);
 
-use \setasign\Fpdi\Fpdi;
+require('vendor/autoload.php');
 
-require_once('pdf_generator/fpdf/fpdf.php');
-require_once('pdf_generator/fpdi2/src/autoload.php');
+use \setasign\Fpdi\Fpdi;
 
 // initiate FPDI
 $pdf = new Fpdi('P','in','Letter');

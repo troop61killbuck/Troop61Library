@@ -13,16 +13,19 @@ $email_info = find_all_email();
 <?php
 if(isset($_POST['update_lib_information'])){
 
-    $req_fields = array('lib_name','lib_description','lib_email');
+    $req_fields = array('lib_name','lib_description','lib_email','apiKey');
     validate_fields($req_fields);
 
     if(empty($errors)){
         $lib_name   = remove_junk($db->escape($_POST['lib_name']));
         $lib_description   = remove_junk($db->escape($_POST['lib_description']));
         $lib_email   = remove_junk($db->escape($_POST['lib_email']));
-        $query = "UPDATE `library_information` SET `Name` = '{$lib_name}', `Description` = '{$lib_description}', `Email` = '{$lib_email}' WHERE `id` = 1";
+        $apiKey   = remove_junk($db->escape($_POST['apiKey']));
+        $query = "UPDATE `library_information` SET `Name` = '{$lib_name}', `Description` = '{$lib_description}', `Email` = '{$lib_email}', `apiKey` = '{$apiKey}' WHERE `id` = 1";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." updated library information.");
+
           foreach($email_info as $a_result){
               $email = $a_result['email'];
 		  $name = $a_result['name'];
@@ -88,8 +91,12 @@ if(isset($_POST['update_lib_information'])){
                             <textarea name="lib_description" class="form-control" cols="30" rows="6" id="lib_description"><?php echo remove_junk($lib_information['Description']); ?></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="lib_email">Library Email</label>
+                            <label for="lib_email">Sendgrid Sender Email</label>
                             <input name="lib_email" maxlength="100" type="email" aria-describedby="emailHelp" value="<?php echo remove_junk($lib_information['Email']); ?>" id="lib_email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="apiKey">Sendgrid API Key</label>
+                            <input name="apiKey" maxlength="100" value="<?php echo remove_junk($lib_information['apiKey']); ?>" id="apiKey" class="form-control">
                         </div>
                         <button name="update_lib_information" type="submit" class="btn btn-primary">Submit</button>
                     </form>

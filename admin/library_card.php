@@ -47,6 +47,8 @@ fclose($myfile);
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a library card to be generated.");
+
             $session->msg('s',"Library Card Generation Added!");
             redirect('library_card.php', false);
         } else {

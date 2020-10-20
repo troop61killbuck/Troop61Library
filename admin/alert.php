@@ -12,7 +12,6 @@ if(!$alert){
 $session->msg("d","Missing alert id.");
         redirect('admin_dashboard.php');
 }
-
 ?>
 
 <body id="page-top">
@@ -67,13 +66,13 @@ $session->msg("d","Missing alert id.");
     						<div class="col-sm-auto">
       						<div class="float-center">
 		    						<?php if ($alert['viewed'] == "0"): ?>
-									<a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markRead('<?php echo $alert['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
+									<a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $_GET['id']?>&status=read&redirect=<?php echo $redirect;?> data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
 										<div>
                     								<i class="far fa-envelope-open fa-3x"></i>
                   							</div>
 									</a>
 		    						<?php elseif ($alert['viewed'] == "1"): ?>
-									<a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markUnread('<?php echo $alert['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
+									<a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=unread&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
 										<div>
                      								<i class="far fa-envelope fa-3x"></i>
                   							</div>

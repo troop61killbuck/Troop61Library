@@ -6,6 +6,7 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('book_catalog',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a copy of a catalog item.");
     $session->msg("s","Catalog Item Deleted.");
     redirect('catalog_grouped.php');
 } else {

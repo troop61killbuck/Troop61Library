@@ -6,6 +6,7 @@ page_require_level(0);
 <?php
 $status = force_password_reset_by_id('users',(int)$_GET['id']);
 if($status){
+    activityLog($user['name']." forced a user to change their password.");
     $session->msg("s","User password reset forced upon next login.");
     redirect('users.php');
 } else {

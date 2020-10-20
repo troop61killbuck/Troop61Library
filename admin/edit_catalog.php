@@ -36,6 +36,8 @@ if(isset($_POST['edit_catalog_item'])){
         $sql = "UPDATE book_catalog SET type ='{$type}', title ='{$title}', category='{$category}', description='{$description}', image_url='{$image}', WHERE id='{$db->escape($id)}'";
         $result = $db->query($sql);
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a catalog item.");
+
             $session->msg('s',"Catalog Item Updated ");
             redirect('catalog.php', false);
         } else {

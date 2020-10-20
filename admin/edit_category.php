@@ -41,6 +41,7 @@ if(isset($_POST['update'])){
         $result = $db->query($query);
         if($result && $db->affected_rows() === 1){
             //sucess
+    activityLog($user['name']." updated a category.");
             $session->msg('s',"Category has been updated! ");
             redirect('categories.php');
         } else {

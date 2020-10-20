@@ -49,7 +49,7 @@
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo remove_junk(ucfirst($user['name'])); ?></span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo remove_junk(ucfirst($user['name'])); ?><?php if($user['tester'] === "1"){ echo '&nbsp&nbsp<i class="fas fa-bug"></i>';}?></span>
             <img class="img-profile rounded-circle" src="uploads/users/<?php echo remove_junk($user['image']); ?>">
         </a>
         <!-- Dropdown - User Information -->

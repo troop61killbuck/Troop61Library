@@ -11,6 +11,8 @@
 <?php
 if(isset($_POST['cards'])){
             //sucess
+    activityLog($user['name']." sent library cards to be printed.");
+
             $session->msg('s',"Library Cards Sent For Printing");
             redirect('library_card.php', false);
 }

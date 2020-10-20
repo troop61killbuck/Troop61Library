@@ -30,6 +30,7 @@ if(isset($_POST['update'])){
         $query .= "WHERE ID='{$db->escape($e_group['id'])}'";
         $result = $db->query($query);
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a group.");
             //sucess
             $session->msg('s',"Group has been updated! ");
             redirect('group.php');

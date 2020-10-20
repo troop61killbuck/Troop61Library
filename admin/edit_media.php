@@ -28,6 +28,7 @@ if(isset($_POST['update'])) {
         $sql = "UPDATE book_media SET name ='{$title}' WHERE id='{$db->escape($id)}'";
         $result = $db->query($sql);
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a media item.");
             $session->msg('s',"Account Updated ");
             redirect('book_media.php', false);
         } else {

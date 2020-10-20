@@ -6,6 +6,8 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('user_groups',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a user group.");
+
     $session->msg("s","Group has been deleted.");
     redirect('group.php');
 } else {

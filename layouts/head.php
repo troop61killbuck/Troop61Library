@@ -1,7 +1,12 @@
+<?php
+require_once('includes/load.php');
+$user = current_user();
+$brand = brand();
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Troop 61 Library - <?php echo $page_name;?></title>
+    <title><?php echo $brand['Name'];?> - <?php echo $page_name;?></title>
     <link rel="icon" type="image/png" sizes="262x286" href="logo/Troop61.png">
     <link rel="icon" type="image/png" sizes="262x286" href="logo/Troop61.png">
     <link rel="icon" type="image/png" sizes="262x286" href="logo/Troop61.png">
@@ -17,7 +22,4 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
 </head>
 
-<?php
-require_once('includes/load.php');
-$user = current_user();
-?>
+

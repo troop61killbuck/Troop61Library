@@ -100,6 +100,32 @@ function find_by_id_w_email($table,$id)
 /*--------------------------------------------------------------*/
 /*  Function for find data from table by id
 /*--------------------------------------------------------------*/
+function find_email($code,$email)
+{
+    global $db;
+    $id = (int)$id;
+        $sql = $db->query("SELECT verified FROM user_emails WHERE id='{$code}' AND email='{$email}' LIMIT 1");
+        if($result = $db->fetch_assoc($sql))
+            return $result;
+        else
+            return null;
+}
+/*--------------------------------------------------------------*/
+/*  Function for find data from table by id
+/*--------------------------------------------------------------*/
+function find_email_preferences($id)
+{
+    global $db;
+    $id = (int)$id;
+        $sql = $db->query("SELECT * FROM user_email_preferences WHERE id='{$id}' LIMIT 1");
+        if($result = $db->fetch_assoc($sql))
+            return $result;
+        else
+            return null;
+}
+/*--------------------------------------------------------------*/
+/*  Function for find data from table by id
+/*--------------------------------------------------------------*/
 function find_by_associated_id($table,$id)
 {
     global $db;
@@ -298,23 +324,46 @@ function current_user(){
     if(!$current_user){
         if(isset($_SESSION['member_id'])):
             $user_id = intval($_SESSION['member_id']);
-            $current_user = find_by_id_w_email('members',$user_id);
+            $current_user = find_by_id('members',$user_id);
         endif;
     }
     return $current_user;
 }
+/*--------------------------------------------------------------*/
+/* Find current log in user by session id
+/*--------------------------------------------------------------*/
+function brand(){
+    static $brand;
+    global $db;
+	$sql = $db->query("SELECT * FROM library_information LIMIT 1");
+        if($result = $db->fetch_assoc($sql))
+            return $result;
+        else
+            return null;
 
+    return $brand;
+}
 /*--------------------------------------------------------------*/
 /* Find all user by joining users table and user gropus table
 /*--------------------------------------------------------------*/
 function find_all_user(){
     global $db;
     $results = array();
-    $sql = "SELECT u.id,u.name,u.username,u.user_level,u.status,u.last_login,u.reset_password,";
+    $sql = "SELECT u.id,u.name,u.username,u.email,u.user_level,u.status,u.last_login,u.reset_password,";
     $sql .="g.group_name ";
     $sql .="FROM users u ";
     $sql .="LEFT JOIN user_groups g ";
     $sql .="ON g.group_level=u.user_level ORDER BY u.name ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+/*--------------------------------------------------------------*/
+/* Find all user by joining users table and user gropus table
+/*--------------------------------------------------------------*/
+function find_all_email(){
+    global $db;
+    $results = array();
+    $sql = "SELECT a.id, a.libraryInfoChange, b.id, b.email, b.name FROM user_email_preferences a  LEFT JOIN users b ON a.id=b.id WHERE a.libraryInfoChange='1'";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -375,6 +424,23 @@ function find_all_books(){
     $sql .="FROM book_catalog b ";
     $sql .="LEFT JOIN book_media m ";
     $sql .="ON m.id=b.image_url ";
+    $sql .="LEFT JOIN book_category c ";
+    $sql .="ON c.category_level=b.category ";
+    $sql .="LEFT JOIN book_types t ";
+    $sql .="ON t.type_level=b.type ORDER BY b.title ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+
+/*--------------------------------------------------------------*/
+/* Find all members by joining members table and member groups table
+/*--------------------------------------------------------------*/
+function find_all_books_no_media(){
+    global $db;
+    $results = array();
+    $sql = "SELECT b.id,b.type,b.title,b.category,b.description,b.copy_no,";
+    $sql .="c.category_name,t.type_name ";
+    $sql .="FROM book_catalog b ";
     $sql .="LEFT JOIN book_category c ";
     $sql .="ON c.category_level=b.category ";
     $sql .="LEFT JOIN book_types t ";

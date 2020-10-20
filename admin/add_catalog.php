@@ -30,7 +30,8 @@ if(isset($_POST['add_catalog_item'])){
         $query .=")";
         if($db->query($query)){
             //sucess
-            $session->msg('s',"User account has been creted! ");
+    activityLog($user['name']." added a book to the catalog.");
+            $session->msg('s',"User account has been created! ");
             redirect('catalog.php', false);
         } else {
             //failed

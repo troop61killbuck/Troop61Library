@@ -4,11 +4,6 @@
     <!-- Sidebar - Brand -->
         <?php require_once('layouts/sidebar_brand.php'); ?>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-<li class="nav-item"><a class="nav-link text-warning" href="/mantisbt" target="_blank">MANTIS BUG TRACKER</a></li>
-    <hr class="sidebar-divider my-0">
-
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="dashboard.php">

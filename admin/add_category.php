@@ -33,6 +33,7 @@ if(isset($_POST['add'])){
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a category.");
             $session->msg('s',"Category has been created! ");
             redirect('categories.php', false);
         } else {

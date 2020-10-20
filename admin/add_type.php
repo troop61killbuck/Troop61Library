@@ -33,6 +33,8 @@ if(isset($_POST['add'])){
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a catalog type.");
+
             $session->msg('s',"Type has been created! ");
             redirect('types.php', false);
         } else {

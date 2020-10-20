@@ -200,6 +200,19 @@ function edit_status_by_id($table,$id,$status)
         return ($db->affected_rows() === 1) ? true : false;
     }
 }
+/*--------------------------------------------------------------*/
+/* Function for edit active
+/*--------------------------------------------------------------*/
+function truncate($table)
+{
+    global $db;
+    if(tableExists($table))
+    {
+        $sql = "TRUNCATE TABLE $table";
+        $db->query($sql);
+        return true;
+    }
+}
 
 
 /*--------------------------------------------------------------*/
@@ -302,7 +315,7 @@ function authenticate_v2($username='', $password='') {
     global $db;
     $username = $db->escape($username);
     $password = $db->escape($password);
-    $sql  = sprintf("SELECT id,username,password,user_level,status,reset_password FROM users WHERE username ='%s' LIMIT 1", $username);
+    $sql  = "SELECT id,name,username,password,user_level,status,reset_password FROM users WHERE username ='$username' OR email ='$username' LIMIT 1";
     $result = $db->query($sql);
     if($db->num_rows($result)){
         $user = $db->fetch_assoc($result);
@@ -329,18 +342,42 @@ function current_user(){
     }
     return $current_user;
 }
+/*--------------------------------------------------------------*/
+/* Find current log in user by session id
+/*--------------------------------------------------------------*/
+function brand(){
+    static $brand;
+    global $db;
+	$sql = $db->query("SELECT * FROM library_information LIMIT 1");
+        if($result = $db->fetch_assoc($sql))
+            return $result;
+        else
+            return null;
 
+    return $brand;
+}
 /*--------------------------------------------------------------*/
 /* Find all user by joining users table and user gropus table
 /*--------------------------------------------------------------*/
 function find_all_user(){
     global $db;
     $results = array();
-    $sql = "SELECT u.id,u.name,u.username,u.email,u.user_level,u.status,u.last_login,u.reset_password,";
+    $sql = "SELECT u.id,u.name,u.username,u.email,u.user_level,u.status,u.last_login,u.reset_password,u.tester,";
     $sql .="g.group_name ";
     $sql .="FROM users u ";
     $sql .="LEFT JOIN user_groups g ";
     $sql .="ON g.group_level=u.user_level ORDER BY u.name ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+/*--------------------------------------------------------------*/
+/* Find all user by joining users table and user gropus table
+/*--------------------------------------------------------------*/
+function find_all_activity(){
+    global $db;
+    $results = array();
+    $sql = "SELECT * FROM activityLog ";
+    $sql .="ORDER BY datetime DESC";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -366,6 +403,20 @@ function find_all_members(){
     $sql .="FROM members m ";
     $sql .="LEFT JOIN member_groups g ";
     $sql .="ON g.group_level=m.group ORDER BY m.id ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+/*--------------------------------------------------------------*/
+/* Find all members by joining members table and member groups table
+/*--------------------------------------------------------------*/
+function find_all_current_members(){
+    global $db;
+    $results = array();
+    $sql = "SELECT m.id,m.name,m.login,m.username,m.group,m.status,";
+    $sql .="g.group_name ";
+    $sql .="FROM members m ";
+    $sql .="LEFT JOIN member_groups g ";
+    $sql .="ON g.group_level=m.group WHERE m.status = 1 ORDER BY m.id ASC";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -422,6 +473,23 @@ function find_all_books(){
 /*--------------------------------------------------------------*/
 /* Find all members by joining members table and member groups table
 /*--------------------------------------------------------------*/
+function find_all_books_no_media(){
+    global $db;
+    $results = array();
+    $sql = "SELECT b.id,b.type,b.title,b.category,b.description,b.copy_no,";
+    $sql .="c.category_name,t.type_name ";
+    $sql .="FROM book_catalog b ";
+    $sql .="LEFT JOIN book_category c ";
+    $sql .="ON c.category_level=b.category ";
+    $sql .="LEFT JOIN book_types t ";
+    $sql .="ON t.type_level=b.type ORDER BY b.title ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+
+/*--------------------------------------------------------------*/
+/* Find all members by joining members table and member groups table
+/*--------------------------------------------------------------*/
 function find_all_books_grouped(){
     global $db;
     $results = array();
@@ -430,6 +498,22 @@ function find_all_books_grouped(){
     $sql .="FROM book_catalog b ";
     $sql .="LEFT JOIN book_media m ";
     $sql .="ON m.id=b.image_url ";
+    $sql .="LEFT JOIN book_category c ";
+    $sql .="ON c.category_level=b.category ";
+    $sql .="LEFT JOIN book_types t ";
+    $sql .="ON t.type_level=b.type GROUP BY b.title ORDER BY b.title ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+/*--------------------------------------------------------------*/
+/* Find all members by joining members table and member groups table
+/*--------------------------------------------------------------*/
+function find_all_books_grouped_no_media(){
+    global $db;
+    $results = array();
+    $sql = "SELECT b.type,b.title,b.category,b.description,";
+    $sql .="c.category_name,t.type_name,COUNT(b.title) as titlecount ";
+    $sql .="FROM book_catalog b ";
     $sql .="LEFT JOIN book_category c ";
     $sql .="ON c.category_level=b.category ";
     $sql .="LEFT JOIN book_types t ";
@@ -545,6 +629,23 @@ function find_all_circulations_history($column,$id){
 /*--------------------------------------------------------------*/
 /* Find all members by joining members table and member groups table
 /*--------------------------------------------------------------*/
+function find_all_circulations_history_report(){
+    global $db;
+    $results = array();
+    $sql = "SELECT b.id,b.book_id,b.member_id,b.date_checked_out,b.date_checked_in,b.returned,b.status,";
+    $sql .="m.name,c.title ";
+    $sql .="FROM book_circulations b ";
+    $sql .="LEFT JOIN members m ";
+    $sql .="ON m.id=b.member_id ";
+    $sql .="LEFT JOIN book_catalog c ";
+    $sql .="ON c.id=b.book_id ";
+    $sql .="ORDER BY b.status,b.date_checked_out ASC";
+    $result = find_by_sql($sql);
+    return $result;
+}
+/*--------------------------------------------------------------*/
+/* Find all members by joining members table and member groups table
+/*--------------------------------------------------------------*/
 function find_all_books_edit($id){
     global $db;
     $results = array();
@@ -588,7 +689,17 @@ function updateLastLogIn($user_id)
     $result = $db->query($sql);
     return ($result && $db->affected_rows() === 1 ? true : false);
 }
+/*--------------------------------------------------------------*/
+/* Function to update the last log in of a user
+/*--------------------------------------------------------------*/
 
+function activityLog($action)
+{
+    global $db;
+    $sql = "INSERT INTO activityLog (activity) VALUES ('$action')";
+    $result = $db->query($sql);
+    return ($result && $db->affected_rows() === 1 ? true : false);
+}
 /*--------------------------------------------------------------*/
 /* Find all group names
 /*--------------------------------------------------------------*/
@@ -697,9 +808,21 @@ function find_by_active($val)
 function find_by_groupLevel($level)
 {
     global $db;
-    $sql = "SELECT group_level FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
+    $sql = "SELECT group_level, group_name FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
+}
+/*--------------------------------------------------------------*/
+/* Find group level
+/*--------------------------------------------------------------*/
+function find_name_by_groupLevel($level)
+{
+    global $db;
+    $results = array();
+    $sql = "SELECT group_name FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
+    $result = find_by_sql($sql);
+    return($result);
+
 }
 /*--------------------------------------------------------------*/
 /* Find group level

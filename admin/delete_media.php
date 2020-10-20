@@ -7,6 +7,8 @@
   $find_media = find_by_id('book_media',(int)$_GET['id']);
   $photo = new Media();
   if($photo->media_destroy($find_media['id'],$find_media['file_name'])){
+    activityLog($user['name']." deleted an image.");
+
       $session->msg("s","Photo has been deleted.");
       redirect('book_media.php');
   } else {

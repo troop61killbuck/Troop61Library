@@ -41,6 +41,7 @@ if(isset($_POST['update'])){
         $result = $db->query($query);
         if($result && $db->affected_rows() === 1){
             //sucess
+    activityLog($user['name']." updated a catalog type.");
             $session->msg('s',"Type has been updated! ");
             redirect('types.php');
         } else {

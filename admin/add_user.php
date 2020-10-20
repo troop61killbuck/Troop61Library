@@ -15,7 +15,7 @@
 <?php
 if(isset($_POST['add_user'])){
 
-    $req_fields = array('full-name','username','password','level' );
+    $req_fields = array('full-name','username','password','level');
     validate_fields($req_fields);
 
     if(empty($errors)){
@@ -23,14 +23,22 @@ if(isset($_POST['add_user'])){
         $username   = remove_junk($db->escape($_POST['username']));
         $password   = remove_junk($db->escape($_POST['password']));
         $user_level = (int)$db->escape($_POST['level']);
+        $tester = $db->escape($_POST['tester']);
+	     if ($tester === "1") {
+			$tester = "1";
+	     } else {
+			$tester = "0";
+	     }
         $password = sha1($password);
         $query = "INSERT INTO users (";
-        $query .="name,username,password,user_level,status";
+        $query .="name,username,password,user_level,status,tester";
         $query .=") VALUES (";
-        $query .=" '{$name}', '{$username}', '{$password}', '{$user_level}','1'";
+        $query .=" '{$name}', '{$username}', '{$password}', '{$user_level}','1','{$tester}'";
         $query .=")";
         if($db->query($query)){
             //sucess
+    activityLog($user['name']." added a user.");
+
             $session->msg('s',"User account has been creted! ");
             redirect('users.php', false);
         } else {
@@ -105,6 +113,13 @@ if(isset($_POST['add_user'])){
                                         <?php endforeach;?>
                                     </select>
                                 </div>
+<?php if($user['user_level'] === "-2"):?>
+							  <div class="form-group inline">
+                                                <input type="checkbox" id="tester" name="tester" data-onlabel="Yes" data-offlabel="No&nbsp" value="1" data-toggle="switchbutton" data-size="md">							
+                                                <label for="tester" style="font-size: 1rem;">&nbsp &nbsp &nbsp &nbspTester?
+                                                </label>               					
+							  </div>
+<?php endif;?>
                                 <div class="form-group clearfix">
                                     <button type="submit" name="add_user" class="btn btn-primary">Add User</button>
                                 </div>
@@ -115,6 +130,7 @@ if(isset($_POST['add_user'])){
             <!-- /.container-fluid -->
 
         </div>
+</div>
         <!-- End of Main Content -->
 
         <!-- Footer -->

@@ -50,13 +50,13 @@
                 </div>
                 <div class="topbar-divider d-none d-sm-block"></div>
 		    <?php if ($notification['viewed'] == "0"): ?>
-			<a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markRead('<?php echo $notification['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
+			<a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=read&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
 				<div>
                     		<i class="far fa-envelope-open"></i>
                   	</div>
 			</a>
 		    <?php elseif ($notification['viewed'] == "1"): ?>
-			<a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markUnread('<?php echo $notification['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
+			<a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=unread&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
 				<div>
                      		<i class="far fa-envelope"></i>
                   	</div>

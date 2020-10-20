@@ -51,13 +51,13 @@
                                         </td>
                                         <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
                                             <?php if ($alert['viewed'] == "0"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markRead('<?php echo $alert['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=read&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
                                                 <div>
                                                     <i class="far fa-envelope-open fa-3x"></i>
                                                 </div>
                                             </a>
                                             <?php elseif ($alert['viewed'] == "1"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="#" onclick="markUnread('<?php echo $alert['id'];?>')" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=unread&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
                                                 <div>
                                                     <i class="far fa-envelope fa-3x"></i>
                                                 </div>

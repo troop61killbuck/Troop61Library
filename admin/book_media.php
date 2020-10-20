@@ -14,6 +14,8 @@
   $photo = new Media();
   $photo->upload($_FILES['file_upload']);
     if($photo->process_media()){
+    activityLog($user['name']." uploaded a photo.");
+
         $session->msg('s','photo has been uploaded.');
         redirect('book_media.php');
     } else{

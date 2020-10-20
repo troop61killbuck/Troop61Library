@@ -6,6 +6,8 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('book_circulations',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a circulation.");
+
     $session->msg("s","Circulation has been deleted.");
     redirect('circulations.php');
 } else {

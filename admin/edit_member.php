@@ -33,6 +33,7 @@ if(isset($_POST['update'])) {
         $sql = "UPDATE members SET name ='{$name}', username ='{$username}',`group`='{$group}',status='{$status}',login='{$login}' WHERE id='{$db->escape($id)}'";
         $result = $db->query($sql);
         if($result && $db->affected_rows() === 1){
+    activityLog($user['name']." updated a library member.");
             $session->msg('s',"Account Updated ");
             redirect('members.php', false);
         } else {

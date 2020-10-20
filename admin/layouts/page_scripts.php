@@ -21,22 +21,6 @@
     <script src="js/demo/datatables-demo.js"></script>
 
 <script>
-function markRead(id) {
-    newWin = window.open("mark_alert.php?id=" + id + "&status=read", "", "width=50,height=50");
-    setTimeout(function (){
-    newWin.close();
-    window.location.reload();}, 500);
-}
-</script>
-<script>
-function markUnread(id) {
-    newWin = window.open("mark_alert.php?id=" + id + "&status=unread", "", "width=50,height=50");
-    setTimeout(function (){
-    newWin.close();
-    window.location.reload();}, 500);
-}
-</script>
-<script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })

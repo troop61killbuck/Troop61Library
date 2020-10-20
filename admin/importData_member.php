@@ -35,7 +35,8 @@ if(isset($_POST['importSubmit'])){
             
             // Close opened CSV file
             fclose($csvFile);
-            
+                activityLog($user['name']." uploaded a CSV with member data.");
+
 		$session->msg('s',"Member data has been imported successfully.");
             redirect('members.php', false);
         }else{

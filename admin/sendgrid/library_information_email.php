@@ -1,6 +1,6 @@
 <?php
 
-include_once('credentials.php');
+require_once('includes/sendgrid_credentials.php');
 
 
 $curl = curl_init();

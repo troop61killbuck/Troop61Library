@@ -63,6 +63,8 @@ if(isset($_POST['circulate'])){
 	  $sql2 = "UPDATE book_catalog SET status = '2', CirculationsAssociatedID = '$randID' WHERE id = '{$catalogIDa}'";
         $result2 = $db->query($sql2);
         if($result && $result2){
+    activityLog($user['name']." checked out an item.");
+
             $session->msg('s',"Checked Out");
             redirect($redirect, false);
         } else {

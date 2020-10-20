@@ -30,6 +30,7 @@ if(isset($_POST['update'])){
         $sql = "UPDATE `users` SET `reset_password` = '0', `password` = '$new' WHERE `users`.`id` = $id;";
         $result = $db->query($sql);
         if($result && $db->affected_rows() === 1):
+    activityLog($user['name']." changed their password.");
             $session->logout();
             $session->msg('s',"Please login with your new password.");
             redirect('index.php', false);

@@ -6,6 +6,8 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('book_types',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a catalog type.");
+
     $session->msg("s","Type has been deleted.");
     redirect('types.php');
 } else {

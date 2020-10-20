@@ -6,6 +6,8 @@ page_require_level(0);
 <?php
 $delete_id = delete_by_id('users',(int)$_GET['id']);
 if($delete_id){
+    activityLog($user['name']." deleted a user.");
+
     $session->msg("s","User deleted.");
     redirect('users.php');
 } else {
