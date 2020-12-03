@@ -6,6 +6,8 @@ labels: bug
 assignees: jackveney
 
 ---
+**Bug location**
+Please list whether this is a bug in the Catalog software or in the Admin software.
 
 **Describe the bug**
 A clear and concise description of what the bug is.
