@@ -1,0 +1,8 @@
+Member Login (/NEW)
+username = admin
+password = admin
+
+Admin Login (/admin)
+username = admin
+password = admin
+

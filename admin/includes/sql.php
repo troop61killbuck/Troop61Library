@@ -37,22 +37,22 @@ function find_all_photos($table) {
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
 /*--------------------------------------------------------------*/
-function find_all_alerts($table,$user_id) {
+function find_all_alerts($table,$table2) {
     global $db;
     if(tableExists($table))
     {
-        return find_by_sql("SELECT * FROM ".$db->escape($table)." WHERE user_id = ".$db->escape($user_id)." ORDER BY date DESC");
+        return find_by_sql("SELECT * FROM ".$db->escape($table)." UNION SELECT * FROM ".$db->escape($table2)." ORDER BY status, datetime_submitted DESC");
     }
 }
 
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
 /*--------------------------------------------------------------*/
-function find_all_alerts_limited($table,$user_id) {
+function find_all_alerts_limited($table,$table2) {
     global $db;
     if(tableExists($table))
     {
-        return find_by_sql("SELECT * FROM ".$db->escape($table)." WHERE user_id = ".$db->escape($user_id)." ORDER BY date DESC LIMIT 4");
+        return find_by_sql("SELECT * FROM ".$db->escape($table)." UNION SELECT * FROM ".$db->escape($table2)." ORDER BY status, datetime_submitted DESC LIMIT 4");
     }
 }
 
@@ -218,13 +218,13 @@ function truncate($table)
 /*--------------------------------------------------------------*/
 /* Function for marking an issue as fixed
 /*--------------------------------------------------------------*/
-function mark_read_status($table,$id,$status)
+function mark_read_status($table,$id,$status,$timestamp)
 {
     global $db;
     if(tableExists($table))
     {
         $sql = "UPDATE {$table}";
-        $sql .= " SET viewed='{$status}'";
+        $sql .= " SET status='{$status}', status_updated='{$timestamp}'";
         $sql .= "  WHERE id={$id}";
         $sql .= " LIMIT 1";
         $db->query($sql);
@@ -282,11 +282,11 @@ function count_open_issues($table){
 /* Function for count open issues by table name (issues table)
 /*--------------------------------------------------------------*/
 
-function count_notifications($table,$id){
+function count_notifications($table){
     global $db;
     if(tableExists($table))
     {
-        $sql    = "SELECT COUNT(id) AS notifications FROM $table WHERE viewed='0' AND user_id = $id";
+        $sql    = "SELECT COUNT(id) AS notifications FROM $table WHERE status='0'";
         $result = $db->query($sql);
         return($db->fetch_assoc($result));
     }
@@ -384,10 +384,10 @@ function find_all_activity(){
 /*--------------------------------------------------------------*/
 /* Find all user by joining users table and user gropus table
 /*--------------------------------------------------------------*/
-function find_all_email(){
+function find_all_email($table){
     global $db;
     $results = array();
-    $sql = "SELECT a.id, a.libraryInfoChange, b.id, b.email, b.name FROM user_email_preferences a  LEFT JOIN users b ON a.id=b.id WHERE a.libraryInfoChange='1'";
+    $sql = "SELECT a.id, a.libraryInfoChange, b.id, b.email, b.name FROM user_email_preferences a  LEFT JOIN users b ON a.id=b.id WHERE a.$table='1'";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -416,7 +416,7 @@ function find_all_current_members(){
     $sql .="g.group_name ";
     $sql .="FROM members m ";
     $sql .="LEFT JOIN member_groups g ";
-    $sql .="ON g.group_level=m.group WHERE m.status = 1 ORDER BY m.id ASC";
+    $sql .="ON g.group_level=m.group WHERE m.status = 0 ORDER BY m.id ASC";
     $result = find_by_sql($sql);
     return $result;
 }
@@ -696,7 +696,7 @@ function updateLastLogIn($user_id)
 function activityLog($action)
 {
     global $db;
-    $sql = "INSERT INTO activityLog (activity) VALUES ('$action')";
+    $sql = "INSERT INTO activityLog (activity,location) VALUES ('$action','Admin')";
     $result = $db->query($sql);
     return ($result && $db->affected_rows() === 1 ? true : false);
 }

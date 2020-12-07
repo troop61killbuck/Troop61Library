@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
 
 <?php
@@ -79,6 +81,17 @@
                             <a href="check_out.php?redirect=<?php echo $redirect;?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-right"><i class="fas fa-arrow-circle-right fa-sm text-white-50"></i> Check Out Item</a>&nbsp &nbsp 
                             <a href="add_catalog.php?redirect=<?php echo $redirect;?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-check-circle fa-sm text-white-50"></i> Return Item</a> 
                         </div>
+<?php if(isset($_GET['memberHistory'])):?>
+				<hr>
+                            <div class="d-sm-flex align-items-center justify-content-right">
+                            <a href="report_allCirculationsPDF.php?memberHistory=<?php echo $_GET['memberHistory'];?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm float-right"><i class="fas fa-print fa-sm text-white-50"></i> Print Circulation History</a> 
+                        </div>
+<?php elseif(isset($_GET['catalogHistory'])):?>
+				<hr>
+                            <div class="d-sm-flex align-items-center justify-content-right">
+                            <a href="report_allCirculationsPDF.php?catalogHistory=<?php echo $_GET['catalogHistory'];?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm float-right"><i class="fas fa-print fa-sm text-white-50"></i> Print Circulation History</a> 
+                        </div>
+<?php endif;?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -159,12 +172,12 @@
 <!-- Scripts-->
 <?php require_once('layouts/page_scripts.php'); ?>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+
+
+
+
+
 
 </body>
 

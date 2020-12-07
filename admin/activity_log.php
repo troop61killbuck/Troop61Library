@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
 
 <?php
@@ -63,7 +65,7 @@
                                     <?php foreach($all_activity as $a_activity): ?>
                                         <tr>
                                             <td class="text-center"><?php echo count_id();?></td>
-                                            <td><?php echo remove_junk($a_activity['activity'])?></td>
+                                            <td><b><?php echo remove_junk(strtoupper($a_activity['location']));?> -</b> <?php echo remove_junk($a_activity['activity'])?></td>
                                             <td><?php echo read_date($a_activity['datetime'])?></td>
                                         </tr>
                                     <?php endforeach;?>
@@ -99,12 +101,12 @@
 <!-- Scripts-->
 <?php require_once('layouts/page_scripts.php'); ?>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+
+
+
+
+
 
 </body>
 

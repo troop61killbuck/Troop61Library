@@ -1,8 +1,17 @@
 <?php
+date_default_timezone_set('America/New_York');
+
 require_once('includes/load.php');
 $user = current_user();
 $brand = brand();
 $redirect = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1410)) {
+// last request was more than 30 minutes ago
+$session->msg('w',"You have been signed out due to inactivity. Please sign in again to continue working.");
+require_once('logout.php');
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 ?>
 <head>
 
@@ -15,18 +24,18 @@ $redirect = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
     <title><?php echo $brand['Name'];?> Administration - <?php echo $page_name; ?></title>
 
     <!-- Custom fonts for this template-->
-    <script src="https://kit.fontawesome.com/b40aadc562.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="vendor/googlefonts/nunito.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="css/sb-admin-2.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+    <link rel="stylesheet" href="css/sb-admin-2.css?v=1.0.1">
+    <link rel="stylesheet" href="vendor/bootstrap-switch/css/bootstrap-switch-button.min.css">
+    <script type="text/javascript" src="vendor/bootstrap-switch/dist/bootstrap-switch-button.min.js"></script>
 
     <!-- DataTables Bootstrap 4 CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/datatables/css/dataTables.bootstrap4.min.css"/>
 
 </head>
 

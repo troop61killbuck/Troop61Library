@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
 <html lang="en">
 
 <?php
@@ -33,7 +34,7 @@ if(isset($_POST['edit_catalog_item'])){
         $description   = remove_junk($db->escape($_POST['description']));
         $image   = remove_junk($db->escape($_POST['image']));
 
-        $sql = "UPDATE book_catalog SET type ='{$type}', title ='{$title}', category='{$category}', description='{$description}', image_url='{$image}', WHERE id='{$db->escape($id)}'";
+        $sql = "UPDATE book_catalog SET type ='{$type}', title ='{$title}', category='{$category}', description='{$description}', image_url='{$image}' WHERE id='{$db->escape($id)}'";
         $result = $db->query($sql);
         if($result && $db->affected_rows() === 1){
     activityLog($user['name']." updated a catalog item.");

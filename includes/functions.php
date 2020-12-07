@@ -47,7 +47,7 @@ function display_msg($msg =''){
     $output = array();
     if(!empty($msg)) {
         foreach ($msg as $key => $value) {
-            $output  = "<div class=\"alert alert-{$key}\">";
+            $output  = "<div class=\"alert alert-{$key}\" style=\"margin-bottom:50px\">";
             $output .= "<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>";
             $output .= remove_junk(first_character($value));
             $output .= "</div>";
@@ -90,6 +90,13 @@ function make_date(){
 function count_id(){
     static $count = 1;
     return $count++;
+}
+/*--------------------------------------------------------------*/
+/* Function for  Readable date time
+/*--------------------------------------------------------------*/
+function count_id_2(){
+    static $count2 = 1;
+    return $count2++;
 }
 /*--------------------------------------------------------------*/
 /* Function for Creting random string
