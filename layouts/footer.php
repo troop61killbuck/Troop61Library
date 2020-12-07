@@ -1,44 +1,44 @@
-    <!-- Start: Footer Clean -->
-    <div class="footer-clean">
-        <footer>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <!-- Start: Services -->
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <!-- End: Services -->
-                    <!-- Start: About -->
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <!-- End: About -->
-                    <!-- Start: Search -->
-                    <div class="col-sm-4 col-md-3 item">
-                        <form class="form-inline mr-auto" target="_self">
-                            <h3>Search</h3>
-                            <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field-1" name="search" style="margin: 16px;"></div>
-                        </form>
-                    </div>
-                    <!-- End: Search -->
-                    <!-- Start: Copyright -->
-                    <div class="col-lg-3 item social">
-                        <p class="copyright"><br>Copyright 	&#169 2020-2020<br>BSA Troop 4061 - Wooster Ohio<br>All Rights Reserved</p>
-                    </div>
-                    <!-- End: Copyright -->
+    <!-- Start: Footer Dark -->
+    <footer class="page-footer dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="login.php">Log In</a></li>
+                        <li><a href="contact-us.php">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Catalog</h5>
+                    <ul>
+                        <li><a href="catalog-page.php">Full Catalog</a></li>
+                        <li><a href="search.php">Search</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Administration</h5>
+                    <ul>
+                        <li><a href="admin/index.php" target="_blank">Library Administration</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-    </div>
-    <!-- End: Footer Clean -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+        </div>
+        <div class="footer-copyright"><p>&copy 2020 BSA Troop 4061 - Wooster, Ohio 
+     <br> All Rights Reserved <br>Parts of This Website Are Powered By: <a href="https://cureo.com" target="new">Cureo</a></p></div>
+    </footer>
+    <!-- End: Footer Dark -->
+    <script src="assets/js/jquery.min.js?h=89312d34339dcd686309fe284b3f226f"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js?h=0168f7c1e0d08faa2f4b13f4a1dc8c98&v=0.0.1"></script>
+    <script src="assets/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/smoothproducts.min.js?h=975b2635c9a06eae9f47d6cae8158a12"></script>
+    <script src="assets/js/theme.js?h=417b03f5f0a4f9f27f8c248f532eb5af"></script>
+    <script src="assets/popper.js/dist/umd/popper.min.js"></script>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

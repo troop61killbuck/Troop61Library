@@ -94,6 +94,21 @@
     </li>
 
     <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Library Catalog
+    </div>
+
+    <!-- Nav Item - Library Information -->
+    <li class="nav-item">
+        <a class="nav-link" href="../index.php">
+            <i class="fas fa-cog"></i>
+            <span>Return to Library Catalog</span></a>
+    </li>
+
+    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->

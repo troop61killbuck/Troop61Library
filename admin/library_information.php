@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
 
 <?php
@@ -7,7 +9,7 @@ $library_info_active = "active";
 require_once('layouts/head.php');
 page_require_level(0);
 $lib_information = find_by_id('library_information',1);
-$email_info = find_all_email();
+$email_info = find_all_email('libraryInfoChange');
 ?>
 
 <?php

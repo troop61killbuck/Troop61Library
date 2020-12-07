@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
 <html lang="en">
 
 <?php
@@ -45,7 +46,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Catalog Reports</h6>
                 </div>
                 <div class="card-body">
-		<a href="#">
+		<a href="report_allTitlesPDF.php"  target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -65,7 +66,7 @@
 
 <br>
 
-		<a href="#">
+		<a href="report_allCopiesPDF.php"  target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -85,7 +86,7 @@
 
 <br>
 
-		<a href="#">
+		<a href="report_currentCirculationsPDF.php" target="_blank"">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -105,7 +106,7 @@
 
 <br>
 
-		<a href="report_allTitles.php">
+		<a href="report_allTitlesCSV.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -125,7 +126,7 @@
 
 <br>
 
-		<a href="report_allCopies.php">
+		<a href="report_allCopiesCSV.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -150,7 +151,7 @@
                 </div>
                 <div class="card-body">
 
-		<a href="#">
+		<a href="report_currentCirculationsPDF.php" target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -170,7 +171,7 @@
 
 <br>
 
-		<a href="#">
+		<a href="report_allCirculationsPDF.php" target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -190,7 +191,7 @@
 
 <br>
 
-		<a href="report_allCirculations.php">
+		<a href="report_allCirculationsCSV.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -217,7 +218,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Member Reports</h6>
                 </div>
                 <div class="card-body">
-		<a href="#">
+		<a href="report_currentMembersPDF.php"  target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -237,7 +238,7 @@
 
 <br>
 
-		<a href="#">
+		<a href="report_allMembersPDF.php"  target="_blank">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -257,7 +258,7 @@
 
 <br>
 
-		<a href="report_currentMembers.php">
+		<a href="report_currentMembersCSV.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -277,7 +278,7 @@
 
 <br>
 
-		<a href="report_allMembers.php">
+		<a href="report_allMembersCSV.php">
               <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">

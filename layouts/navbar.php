@@ -1,26 +1,28 @@
-    <!-- Start: Navigation with Search -->
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top navigation-clean-search" style="background: rgb(75,112,221);color: rgb(255,255,255);">
-        <div class="container-fluid"><img class="img-fluid" src="logo/Troop61.png" width="50px"><a class="navbar-brand" href="/index.php" style="margin: 0px 16px 0px 16px;"><?php echo $brand['Name'];?></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <!-- Start: Navigation-->
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container">
+            <div class="d-none d-sm-block"><img src="assets/img/scenery/Troop61.png?h=ac0a7c708392af5ecb7eff82766a0861" width="50px" title="Troop 61"></div><a class="navbar-brand logo" href="index.php" style="margin: 0 16px 0 16px;">Troop 61 Library</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
-                class="collapse navbar-collapse" id="navcol">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"><a class="nav-link <?php echo $home_active;?>" href="/index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link <?php echo $catalog_active;?>" href="/catalog.php">Catalog</a></li>
-                    <li class="nav-item"><a class="nav-link <?php echo $search_active;?>" href="/search.php">Search Catalog</a></li>
-                    <li class="nav-item"><a class="nav-link <?php echo $contact_active;?>" href="/contact.php">Contact Us</a></li>
-                </ul><a class="btn btn-light ml-auto action-button" role="button" href="/admin/index.php" <?php if($session->isMemberLoggedIn(true)):?>style="margin-right: 20px;"<?php endif;?>>Library Administration</a>
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link <?php echo $home_active;?>" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $catalog_active;?>" href="catalog-page.php">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $search_active;?>" href="search.php">Search Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $contact_active;?>" href="contact-us.php">Contact Us</a></li>
 <?php if($session->isMemberLoggedIn(true)):?>
-<div class="btn-group">
-<button type="button" class="btn btn-light ml-auto action-button dropdown-toggle" data-toggle="dropdown"><?php echo $user['name'];?></button>
-    <div class="dropdown-menu dropdown-menu-right">
-	<a href="settings.php" class="dropdown-item"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings</a>
-	<a href="account.php" class="dropdown-item"><i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>My Account</a>
-     <div class="dropdown-divider"></div>
-	<a href="logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Log Out</a></div>
-     </div>
+                    <li class="nav-item dropdown <?php echo $dropdown_active;?>"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><?php echo $user['name'];?></a>
+                        <div class="dropdown-menu">
+					<a class="dropdown-item" href="settings.php">Settings</a>
+					<a class="dropdown-item" href="account.php">My Account</a>
+                              <hr style="margin: 8px;margin-top: 8px;margin-right: 16px;margin-left: 16px;">
+					<a class="dropdown-item" href="logout.php?redirect=<?php echo $redirect;?>">Log Out</a></div>
+                    </li>
+<?php else:?>
+                    <li class="nav-item"><a class="nav-link <?php echo $login_active;?>" href="login.php">Sign In</a></li>
 <?php endif;?>
-</div>
-
+                    <li class="nav-item"></li>
+                </ul>
+        </div>
         </div>
     </nav>
-    <!-- End: Navigation with Search -->
+    <!-- End: Navigation-->

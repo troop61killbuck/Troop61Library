@@ -1,5 +1,6 @@
 <?php include_once('includes/load.php'); ?>
 <?php
+$_SESSION['LAST_ACTIVITY'] = time();
 $req_fields = array('username','password' );
 validate_fields($req_fields);
 $username = remove_junk($_POST['username']);

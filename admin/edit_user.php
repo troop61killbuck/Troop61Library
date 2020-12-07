@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
 
 <?php
@@ -179,7 +181,7 @@ if(isset($_POST['update-pass'])) {
                                         <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Deactive</option>
                                     </select>
                                 </div>
-<?php if($user['user_level'] === "-2"):?>
+<?php if($user['user_level'] === "-1"):?>
 							  <div class="form-group inline">
                                                 <input type="checkbox" id="tester" name="tester" data-onlabel="Yes" data-offlabel="No&nbsp" value="1" data-toggle="switchbutton" data-size="md" <?php if ($e_user['tester'] === '1') { echo "checked"; }?>>							
                                                 <label for="tester" style="font-size: 1rem;">&nbsp &nbsp &nbsp &nbspTester?

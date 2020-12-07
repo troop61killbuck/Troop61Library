@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
 <html lang="en">
 
 <?php
@@ -30,7 +31,7 @@ if(isset($_POST['add_card'])){
 $member = find_by_id('members',(int)$_POST['add-card']);
 
 $barcode_url = remove_junk($member['id']);
-$content = file_get_contents("http://troop61library.ml/admin/barcode_generator/barcode.php?s=code-128&d={$barcode_url}&ts=50&w=252&h=84&p=15&th=15");
+$content = file_get_contents("https://www.troop61killbuck.org/library/admin/barcode_generator/barcode.php?s=code-128&d={$barcode_url}&ts=50&w=252&h=84&p=15&th=15");
 
 $myfile = fopen("barcode_generator/generated_barcodes/{$barcode_url}.png", "w+") or die("/generated_barcodes/{$barcode_url}.png Failed");
 $txt = $content;
@@ -137,7 +138,7 @@ fclose($myfile);
                 </div>
                     </div>
                 </div>
-
+</div>
             <!-- /.container-fluid -->
 
         </div>
@@ -193,12 +194,12 @@ fclose($myfile);
 <!-- Scripts-->
 <?php require_once('layouts/page_scripts.php'); ?>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+
+
+
+
+
 
 </body>
 

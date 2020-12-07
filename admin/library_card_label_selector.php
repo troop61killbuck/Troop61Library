@@ -43,7 +43,7 @@ if(isset($_POST['cards'])){
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800"><?php echo $page_name; ?></h1>
+                    <h1 class="h3 mb-0 text-gray-800"><a href="library_card.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-left"><i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Back</a>&nbsp&nbsp&nbsp<?php echo $page_name; ?></h1>
                 </div>
 
                 <!-- Content Row -->
@@ -54,11 +54,10 @@ if(isset($_POST['cards'])){
                         <div class="card-header py-3">
                             <div class="d-sm-flex align-items-center justify-content-between">
                             
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="library_card.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-left"><i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Back</a><br><br>Select Locations For Labels To Be Printed</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Select Locations For Labels To Be Printed</h6>
                         </div>
                         </div>
                         <div class="card-body">
-					Only select the exact number of cards to be geneated, as it will break the generation otherwise.<br><br>
                             <form method="post" action="barcode_printout.php" target="_blank" id="barcode_print">
                             <div class="table-responsive">
                                 <table class="table table-bordered" width="100%" cellspacing="0">
@@ -157,7 +156,7 @@ if(isset($_POST['cards'])){
                             </form>
                     </div>
                 </div>
-
+</div>
             <!-- /.container-fluid -->
 
         </div>
@@ -229,7 +228,6 @@ if(isset($_POST['cards'])){
                 });
             }
         });
-
 document.getElementById("barcode_print").onsubmit = function() {
 setTimeout(() => {  window.location.href = "library_card.php";
     return false;

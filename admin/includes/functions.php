@@ -92,6 +92,13 @@ function count_id(){
     return $count++;
 }
 /*--------------------------------------------------------------*/
+/* Function for  Readable date time
+/*--------------------------------------------------------------*/
+function count_id_2(){
+    static $count2 = 1;
+    return $count2++;
+}
+/*--------------------------------------------------------------*/
 /* Function for Creting random string
 /*--------------------------------------------------------------*/
 function randString($length = 5)

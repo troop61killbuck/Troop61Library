@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
 
 <?php

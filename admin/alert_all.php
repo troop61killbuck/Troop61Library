@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+ <?php require_once('layouts/variables.php');?> 
+
 <html lang="en">
     <?php
         $page_name = "All Alerts";
@@ -6,7 +8,7 @@
         // Checkin What level user has permission to view this page
         page_require_level(0);
         
-        $alerts = find_all_alerts('alerts',$user['id']);
+        $alerts = find_all_alerts('contact_us_responses','book_requests');
         
         ?>
     <body id="page-top">
@@ -23,6 +25,7 @@
                 <?php require_once('layouts/topbar.php'); ?>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
+
                 <div class="container-fluid">
                     <!-- Content Row -->
                     <div class="col-md-12">
@@ -38,51 +41,111 @@
                             <table class="table table-bordered" width="100%" cellspacing="0">
                                 <tbody>
                                     <?php foreach($alerts as $alert): ?>
+
+		<?php if ($alert['location'] == "book_requests"):?>
                                     <tr>
                                         <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
-                                            <a href="alert.php?id=<?php echo $alert['id'];?>">
-                                                <div class="icon-circle bg-<?php echo $alert['color'];?>">
-                                                    <i class="<?php echo $alert['icon'];?>"></i>
+                                            <a href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-book text-white"></i>
                                                 </div>
                                             </a>
                                         </td>
                                         <td colspan="2" style="vertical-align:middle;">
-                                            <div class="small text-gray-500"><?php echo read_date($alert['date']); ?></div>
+                                            <div class="small text-gray-500">SUBMITTED: <?php echo read_date($alert['datetime_submitted']); ?><br>UPDATED: <?php echo read_date($alert['status_updated']); ?></div>
                                         </td>
                                         <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
-                                            <?php if ($alert['viewed'] == "0"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=read&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Read">
+                                            <?php if ($alert['status'] == "0"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $alert['id'];?>&status=read&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Mark As Read">
                                                 <div>
-                                                    <i class="far fa-envelope-open fa-3x"></i>
+                                                    <i class="fas fa-check-circle fa-3x"></i>
                                                 </div>
                                             </a>
-                                            <?php elseif ($alert['viewed'] == "1"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $notification['id'];?>&status=unread&redirect=<?php echo $redirect;?>" data-toggle="tooltip" data-placement="bottom" title="Mark As Unread">
+                                            <?php elseif ($alert['status'] == "1"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $alert['id'];?>&status=unread&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Mark As Unread">
                                                 <div>
-                                                    <i class="far fa-envelope fa-3x"></i>
+                                                    <i class="fas fa-times-circle fa-3x"></i>
                                                 </div>
                                             </a>
                                             <?php endif;?>
                                         </td>
+                                        <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
+                                            <a style="text-decoration: none; color: #3a3b45;" href="delete_alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <div>
+                                                    <i class="fas fa-trash fa-3x"></i>
+                                                </div>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" style="vertical-align:middle;"><?php if ($alert['viewed'] == "0"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>">
-                                            <span class="font-weight-bold"><?php echo remove_junk($alert['title']); ?></span>
+                                        <td colspan="2" style="vertical-align:middle;"><?php if ($alert['status'] == "0"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                            <span class="font-weight-bold">[Book Request] - <?php echo remove_junk($alert['message']); ?></span> ( <?php echo remove_junk($alert['name']); ?> )
                                             </a>
-                                            <?php elseif ($alert['viewed'] == "1"): ?>
-                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>">
-                                            <?php echo $alert['title']; ?>
+                                            <?php elseif ($alert['status'] == "1"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                            [Book Request] - <?php echo remove_junk($alert['message']); ?> ( <?php echo remove_junk($alert['name']); ?> )
                                             </a>
                                             <?php else: ?>
                                             <?php endif;?>
                                         </td>
                                     </tr>
+		<?php elseif ($alert['location'] == "contact_us_responses"):?>
+                                    <tr>
+                                        <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
+                                            <a href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-user text-white"></i>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td colspan="2" style="vertical-align:middle;">
+                                            <div class="small text-gray-500">SUBMITTED: <?php echo read_date($alert['datetime_submitted']); ?><br>UPDATED: <?php echo read_date($alert['status_updated']); ?></div>
+                                        </td>
+                                        <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
+                                            <?php if ($alert['status'] == "0"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $alert['id'];?>&status=read&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Mark As Read">
+                                                <div>
+                                                    <i class="fas fa-check-circle fa-3x"></i>
+                                                </div>
+                                            </a>
+                                            <?php elseif ($alert['status'] == "1"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="mark_alert.php?id=<?php echo $alert['id'];?>&status=unread&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Mark As Unread">
+                                                <div>
+                                                    <i class="fas fa-times-circle fa-3x"></i>
+                                                </div>
+                                            </a>
+                                            <?php endif;?>
+                                        </td>
+                                        <td rowspan="2" class="text-center" style="width: 50px; vertical-align:middle;">
+                                            <a style="text-decoration: none; color: #3a3b45;" href="delete_alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo base64_encode($redirect);?>" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <div>
+                                                    <i class="fas fa-trash fa-3x"></i>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="vertical-align:middle;"><?php if ($alert['status'] == "0"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                            <span class="font-weight-bold">[Contact Us Message] - <?php echo remove_junk($alert['name']); ?></span>
+                                            </a>
+                                            <?php elseif ($alert['status'] == "1"): ?>
+                                            <a style="text-decoration: none; color: #3a3b45;" href="alert.php?id=<?php echo $alert['id'];?>&location=<?php echo $alert['location'];?>&redirect=<?php echo $redirect;?>">
+                                            [Contact Us Message] - <?php echo remove_junk($alert['name']); ?>
+                                            </a>
+                                            <?php else: ?>
+                                            <?php endif;?>
+                                        </td>
+                                    </tr>
+		<?php endif;?>
+
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+</div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
@@ -101,10 +164,10 @@
         <?php require_once('layouts/logout_page.php'); ?>
         <!-- Scripts-->
         <?php require_once('layouts/page_scripts.php'); ?>
-        <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-        <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
+    
+    
+    
+    
+    
     </body>
 </html>
